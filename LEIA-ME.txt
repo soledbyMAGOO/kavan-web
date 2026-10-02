@@ -1,0 +1,8 @@
+KAVAN - Landing page (protótipo desktop)
+
+index.html  -> página completa e autônoma (imagens já embutidas). Abra no navegador.
+assets/     -> imagens otimizadas (WebP) nomeadas por slot, para uso em outros projetos.
+docs/       -> Design System KAVAN v1.
+
+Conteúdo provisório a substituir antes de publicar: nomes de restaurantes,
+depoimentos, retrato do avatar, planos (sob consulta), links das lojas e logo oficial (SVG).
