@@ -166,7 +166,7 @@ footer{background:var(--brand,#050608);border-top:1px solid var(--b1);padding:72
 .toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,30px);opacity:0;z-index:120;background:var(--s3);border:1px solid var(--b2);padding:13px 22px;border-radius:12px;font-size:14px;transition:.3s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
 .sw{position:fixed;right:20px;bottom:20px;z-index:30;display:flex;gap:6px;background:rgba(13,16,20,.9);border:1px solid var(--b2);padding:6px;border-radius:99px;backdrop-filter:blur(10px)}
 .sw button{border:0;width:26px;height:26px;border-radius:50%;cursor:pointer;outline-offset:2px}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.hero-fig .hero-motion{display:none!important}.hero-fig .hero-still{display:block!important}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media(max-width:1000px){.hero .c,.demo .c,.strip{grid-template-columns:1fr}.grid3,.grid4,.steps,.tbox,.ben .c,.fg{grid-template-columns:1fr 1fr}nav{display:none}.phone-img{display:none}}
 </style>
 </head>
@@ -408,7 +408,7 @@ const heroMotion=document.querySelector('.hero-motion');
 const heroFigure=heroMotion&&heroMotion.closest('.hero-fig');
 let heroMotionQueued=false;
 function playHeroMotion(){
- if(!heroMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ if(!heroMotion)return;
  const start=()=>{heroMotionQueued=false;if(!heroFigure.matches(':hover'))return;heroMotion.currentTime=0;const play=heroMotion.play();if(play&&play.catch)play.catch(()=>{})};
  if(heroMotion.readyState>=1){start();return}
  if(heroMotionQueued)return;
