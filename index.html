@@ -405,11 +405,18 @@ $$('#rtabs .tab').forEach(t=>t.onclick=()=>{$$('#rtabs .tab').forEach(x=>x.setAt
 demo(0);rest('all');tst();
 
 const heroMotion=document.querySelector('.hero-motion');
-if(heroMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
- const playHeroMotion=()=>{heroMotion.currentTime=0;const play=heroMotion.play();if(play&&play.catch)play.catch(()=>{})};
- heroMotion.addEventListener('mouseenter',playHeroMotion);
- heroMotion.addEventListener('loadedmetadata',()=>{if(heroMotion.matches(':hover'))playHeroMotion()},{once:true});
+const heroFigure=heroMotion&&heroMotion.closest('.hero-fig');
+let heroMotionQueued=false;
+function playHeroMotion(){
+ if(!heroMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const start=()=>{heroMotionQueued=false;if(!heroFigure.matches(':hover'))return;heroMotion.currentTime=0;const play=heroMotion.play();if(play&&play.catch)play.catch(()=>{})};
+ if(heroMotion.readyState>=1){start();return}
+ if(heroMotionQueued)return;
+ heroMotionQueued=true;
+ heroMotion.addEventListener('loadedmetadata',start,{once:true});
+ heroMotion.load();
 }
+if(heroFigure)heroFigure.addEventListener('pointerenter',playHeroMotion);
 </script>
 </body>
 </html>
